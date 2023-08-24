@@ -1,0 +1,36 @@
+
+<!doctype html>
+<html>
+<head>
+</head>
+<body>
+    <script>
+        const checkCookiesDisabled = () => {
+            let isCookieDisabled = (window.navigator.cookieEnabled) ? false : true;
+            if (typeof window.navigator.cookieEnabled == "undefined" && !isCookieDisabled) {
+                document.cookie = "testcookie";
+                isCookieDisabled = (document.cookie.indexOf("testcookie") != -1) ? false : true;
+            }
+
+            return isCookieDisabled;
+        }
+        (function () {
+            window.addEventListener('message', event => {
+                try {
+                    let data = JSON.parse(event.data)
+                    if (data['test'] !== 'cookie')
+                        return
+                    let result = checkCookiesDisabled()
+                    parent.postMessage(JSON.stringify({
+                        'result': result
+                    }), event.origin)
+                }
+                catch (e) {
+                    console.error(e)
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>
