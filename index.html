@@ -34,8 +34,8 @@
         (function () {
             if (!window.parent) return;
             var msg = /s=1/.test(document.cookie)
-                ? "3pcSupported"
-                : "3pcUnsupported";
+                ? "3pcUnsupported"
+                : "3pcSupported";
             window.parent.postMessage(msg, "*");
         })();
     </script>
