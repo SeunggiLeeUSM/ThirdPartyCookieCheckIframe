@@ -31,13 +31,15 @@
         //     });
         // })();
 
-        (function () {
-            if (!window.parent) return;
-            var msg = /s=1/.test(document.cookie)
-                ? "3pcUnsupported"
-                : "3pcSupported";
-            window.parent.postMessage(msg, "*");
-        })();
+        // (function () {
+        //     if (!window.parent) return;
+        //     var msg = /s=1/.test(document.cookie)
+        //         ? "3pcUnsupported"
+        //         : "3pcSupported";
+        //     window.parent.postMessage(msg, "*");
+        // })();
+
+  document.cookie = "testcookie=1; SameSite=None; Secure";
     </script>
     <p>Iframe Third party cookie checker</p>
 </body>
